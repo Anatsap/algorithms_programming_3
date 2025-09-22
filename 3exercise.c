@@ -14,6 +14,9 @@ int main(){
         printf("%d, ", arr[i]); 
     } 
     int *px = arr;
+    printf("%p", px);
+    px++;
+    printf("\n%p", px);
     for( i = 0; i < array_size; i++){
         if( *( px + i) % 5 == 0){
             if(*(px + i) < min){
