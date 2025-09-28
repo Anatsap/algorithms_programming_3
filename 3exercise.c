@@ -1,30 +1,20 @@
 #include <stdio.h> 
 #include <stdlib.h> 
+#include <string.h>
 int main(){
-    int array_size = 8, i = 0;
-    int min = 0;
-    int arr[array_size];
-    arr[0] = 500;
-    for (int i = 1; i < array_size; i++) {
-        printf("Enter element of array %d: ", i + 1);
-        scanf("%d", &arr[i]);
-    }
-    printf("Array elements: ");
-    for (int i = 0; i < array_size; i++) { 
-        printf("%d, ", arr[i]); 
-    } 
-    int *px = arr;
-    printf("%p", px);
-    px++;
-    printf("\n%p", px);
-    for( i = 0; i < array_size; i++){
-        if( *( px + i) % 5 == 0){
-            if(*(px + i) < min){
-                min = *(px + i);
-            }
+    int q_o = 0;
+    const char *fi[] = {"Tsapiv", "Anastasia", "Volodymyrivna"};
+    printf(" %s\n %s\n %s\n",fi[0],fi[1],fi[2]); 
+    const char *surname = fi[0];
+    printf("Size massiv pointer = %zu\n",sizeof(fi)); 
+    printf("Size pointer 1 string = %zu\n",sizeof(surname)); 
+    printf("Size pointer 2 string = %zu\n",sizeof(fi[1])); 
+    printf("Size pointer 3 string = %zu\n",sizeof(fi[2])); 
+    for(int i = 0;i < strlen(surname); i++){
+        if(surname[i] == 'o'){
+            q_o++;
         }
     }
-    printf("\nmin = %d\n", min); 
-    system("pause"); 
+    printf("Quantity of 'o' : %d", q_o); 
     return 0;
 }

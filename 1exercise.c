@@ -2,29 +2,31 @@
 #include <stdlib.h>
 
 int main(){
-    int array_size = 6, new_array_size;
-    int array[array_size];
-    double average;
-    double sum = 0.0;
-    for (int i = 0; i < array_size; i++) {
+    int array[5][4];
+    int sum[4] = {0};
+    for (int i = 0; i < 5; i++) {
+        for(int j = 0; j < 4; j++){
         printf("Enter element of array %d: ", i + 1);
-        scanf("%d", &array[i]);
+        scanf("%d", &array[i][j]);
+    }
     }
     printf("Array elements: ");
-    for (int i = 0; i < array_size; i++) { 
-        printf("%d, ", array[i]); 
+    for (int i = 0; i < 5; i++) {
+        for(int j = 0; j < 4; j++){
+        printf("%d, ", array[i][j]); 
     } 
-    new_array_size = array_size;
-    for(int i = 0; i < array_size; i++){
-        if(array[i] != 0){
-            sum += array[i];
-        }else{
-            new_array_size -= 1;
-        }
     }
-    average = sum / new_array_size;
-    printf("\nResult : %.2f\n", average);
-    system("pause");
+    for(int j = 0; j < 4; j++){
+        for(int i = 0; i < 5; i++)
+            if (array[i][j] > 0){
+                if(array[i][j] % 2 != 0){
+                    sum[j] += array[i][j];
+                }
+        }
+    } 
+    for(int j = 0; j < 4; j++){
+        printf("\nColumn sum %d: %d", j + 1, sum[j]);
+    }
+    
     return 0;
-
 }
