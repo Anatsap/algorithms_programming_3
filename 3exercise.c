@@ -15,6 +15,7 @@ int main(){
             q_o++;
         }
     }
+    
     printf("Quantity of 'o' : %d", q_o); 
     return 0;
 }
