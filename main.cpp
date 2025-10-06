@@ -6,10 +6,10 @@ int main(){
     int a = 0;
     int b = 1;
     int n = 5;
-    int fact = 1;
+    double fact = 1;
     int k = 10;
     float s = 0, x;
-    x = a;
+
     double h = (b - a)/double(k - 1);
     for (x = a; x <= b + 1e-8; x += h){
         s = 0;
