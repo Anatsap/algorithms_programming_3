@@ -1,31 +1,33 @@
 #include <iostream>
 #include <iomanip>
 
-int main(){
-    int colums = 8;
-    int rows = 16;
-    std::cout << "Colums and rows of ASCII : " << std::endl;
-    for(int i = 0; i < colums; ++i){
-        std::cout << std::setw(10) << std::hex << i << " | ";
-        for(int j = 0; j < rows; ++j){
-            std::cout << std::setw(10) << std::dec << i << "|";
+int main() {
+    const int columns = 8;
+    const int rows = 16;
+    int ascii;
+    char symbol;
+
+    std::cout << "Columns and rows of ASCII:\n\n";
+
+    // Верхній рядок із номерами стовпців
+    std::cout << "   ";
+    for (int i = 0; i < columns; ++i)
+        std::cout << std::setw(10) << i;
+    std::cout << std::endl;
+
+    // Основна таблиця
+    for (int j = 0; j < rows; ++j) {
+        std::cout << std::setw(2) << j << " ";  // номер рядка зліва
+        for (int i = 0; i < columns; ++i) {
+            ascii = i * rows + j;
+            if (ascii >= 32 && ascii < 127)
+                symbol = static_cast<char>(ascii);
+            else
+                symbol = '.';
+            std::cout << std::setw(8) << ascii << ": " << symbol;
         }
+        std::cout << std::endl;
     }
-    std::cout << std::left << std::setw(15) << "Dec"
-              << std::setw(10) << "Hex"
-              << std::setw(20) << "Oct" << std::endl;
 
-    std::cout << std::setfill(' ') << std::setw(45) << "" << std::endl;
-
-    std::cout << std::left << std::setw(15) << 0
-              << std::setw(10) << std::hex << 0
-              << std::setw(20) << std::oct << 0 << std::endl;
-
-    std::cout << std::left << std::setw(15) << 1
-              << std::setw(10) << std::hex << 1
-              << std::setw(20) << std::oct << 1 << std::endl;
-    std::cout << std::left << std::setw(15) << 2
-              << std::setw(10) << std::hex << 2
-              << std::setw(20) << std::oct << 2 << std::endl;
     return 0;
 }
