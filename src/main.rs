@@ -1,52 +1,45 @@
-use rand::Rng; 
+fn main()
+{
 
-fn main() {
-    let mut rng = rand::rng();
-    let mut vec: Vec<f64> = Vec::with_capacity(49);
-    for _ in 0..49 {
-        vec.push(rng.random_range(-100.0..100.0)); 
+    let n: i32 = 5;
+    let a: f32 =0.0;
+    let b: f32 = 1.0;
+    let h: f32 = (b-a)/((n-1) as f32);
+    let mut x: f32; 
+    let mut fx: f32;
+    for i in 1..n+1{
+        x = a+((i-1) as f32)*h;
+        fx = 3f32.powf(x);
+        println!("{} {} {}", i as i32, x,fx);
     }
-    let mut fir_positive = f64::INFINITY; 
-    let mut sec_positive = f64::INFINITY; 
-    let mut fir_negative = f64::NEG_INFINITY; 
-    let mut sec_negative = f64::NEG_INFINITY;
-    let mut sum = 0.0; 
+}
 
-    let mut i = 0;
-    while i < vec.len() {
-        let val = vec[i];
-        if val > 0.0 {
-            if val < fir_positive {
-                sec_positive = fir_positive;
-                fir_positive = val;
-            } else if val < sec_positive {
-                sec_positive = val;
-            }
-        }
-        i += 1;
+fn fact(n: u64) -> u64 {
+    if n == 0 {
+        1 
+    } else {
+        n * fact(n - 1) 
     }
-    i = 0;
-    while i < vec.len() {
-        let val = vec[i];
-        if val < 0.0 {
-            if val > fir_negative {
-                sec_negative = fir_negative;
-                fir_negative = val;
-            } else if val > sec_negative {
-                sec_negative = val;
-            }
-        }
-        i += 1;
-    }
-    
-    for &val in &vec {
-        if val > sec_negative && val < sec_positive {
-            sum += val.powi(4);
-        }
-    }
+}
 
-    println!("Array: {:?}", vec);
-    println!("Second smallest positive: {}", sec_positive);
-    println!("Second largest negative: {}", sec_negative);
-    println!("Sum of fourth powers in range: {}", sum);
+
+fn main()
+{
+    let mut delta: f64 = 0.1;
+    while delta >= 0.000001{
+
+        let mut n: u64 = 0;
+        let mut sum: f64 = 0.0;
+        let mut an: f64 = 1.0;
+
+        while an > delta{
+            an = 1.0 / ((fact(n) as f64) * ((n + 3) as f64));
+            sum += an;
+            n += 1;        
+            println!("Accurancy: {}", delta);
+            println!("Quantity of terms: {}", n);
+            println!("Sum: {}", sum);
+        }
+        delta = delta / 10.0;
+    }
 }
